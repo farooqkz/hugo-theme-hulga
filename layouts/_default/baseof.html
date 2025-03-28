@@ -1,7 +1,41 @@
 <!DOCTYPE html> 
 <html {{if .Site.LanguageCode}}lang="{{.Site.LanguageCode}}"{{end}}>
 {{- partial "head.html" . -}}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  function applyTextDirection() {
+    const elements = document.querySelectorAll(
+      "#post-content p, #post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5, #post-content h6, #post-content li, #post-content blockquote, #post-content dd, #post-content dt, #post-content td, #post-content th"
+    );
 
+    const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+
+    elements.forEach((el) => {
+      if (persianRegex.test(el.textContent)) {
+        el.style.direction = "rtl";
+        el.style.textAlign = "right";
+      } else {
+        el.style.direction = "ltr";
+        el.style.textAlign = "left";
+      }
+    });
+  }
+
+  // اجرای اولیه هنگام بارگذاری صفحه
+  applyTextDirection();
+
+  // اگر محتوای #post-content دینامیکی تغییر کند، تغییرات را بررسی کن
+  const observer = new MutationObserver(() => {
+    applyTextDirection();
+  });
+
+  const postContent = document.querySelector("#post-content");
+  if (postContent) {
+    observer.observe(postContent, { childList: true, subtree: true });
+  }
+});
+
+</script>
 <body>
   <div id="main">
     {{- block "main" . }}{{- end }}
