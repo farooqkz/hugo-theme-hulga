@@ -17,6 +17,9 @@ other = "There are {{ .Count }} articles in this blog"
 [404-info]
 other = "Page not found, please check the URL"
 
+[404-title]
+other = "404 Not found"
+
 [prev_page]
 other = "Previous"
 
