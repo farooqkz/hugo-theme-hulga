@@ -37,17 +37,16 @@
   </div>
 </section>
 
-<!-- لود کتابخانه از CDN -->
-<script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.2.8/dist/jalaali.min.js"></script>
+<script src="js/jalaali.min.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     let timeElement = document.getElementById("date");
     if (timeElement) {
-      let dateStr = timeElement.getAttribute("data-date");  // تاریخ میلادی از data-attribute
-      let [gy, gm, gd] = dateStr.split("-").map(Number);   // تبدیل به عدد
-      let { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd);  // تبدیل به شمسی
-      timeElement.innerText = `${jd.toString().padStart(2, '0')} / ${jm.toString().padStart(2, '0')} / ${jy}`;
+      let dateStr = timeElement.getAttribute("data-date");  // extract gregorian date
+      let [gy, gm, gd] = dateStr.split("-").map(Number);   // convert to numbers
+      let { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd);  // convert to jalali
+      timeElement.innerText = `${jd.toLocaleString().padStart(2, '۰')} / ${jm.toLocaleString().padStart(2, '۰')} / ${jy}`;
     }
   });
 </script>
