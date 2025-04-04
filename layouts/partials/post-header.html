@@ -36,21 +36,3 @@
     </header>
   </div>
 </section>
-
-
-{{ if eq .Lang "fa"}}
-<script src="/js/jalaali.min.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    let timeElement = document.getElementById("date");
-    if (timeElement) {
-      let dateStr = timeElement.getAttribute("data-date");  // extract gregorian date
-      let [gy, gm, gd] = dateStr.split("-").map(Number);   // convert to numbers
-      let { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd);  // convert to jalali
-      timeElement.innerText = `${jd.toLocaleString().padStart(2, '۰')} / ${jm.toLocaleString().padStart(2, '۰')} / ${jy}`;
-      timeElement.dir = "rtl";
-    }
-  });
-</script>
-{{end}}
