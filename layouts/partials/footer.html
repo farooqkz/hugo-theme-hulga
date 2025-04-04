@@ -1,6 +1,10 @@
-<footer class="footer">
+<footer class="footer" dir='{{ if eq .Lang "fa" }}rtl{{else}}ltr{{end}}'>
   <div class="content has-text-centered">
+    {{ if eq .Lang "fa" }}
+    <p>قدرت گرفته از <a href="https://gohugo.io">هوگو</a>. قالب <a href="https://github.com/wlh320/hugo-theme-hulga">هولگا</a></p>
+    {{else}}
     <p>Powered by <a href="https://gohugo.io">Hugo</a>. Theme <a href="https://github.com/wlh320/hugo-theme-hulga">Hulga</a></p>
+    {{end}}
     <p>
     {{- if .Site.Params.copyright -}}
     {{ .Site.Params.copyright }}
