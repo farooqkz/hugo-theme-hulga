@@ -182,6 +182,8 @@ To create a Persian website, set `defaultContentLanguage` and `languageCode` to 
 
 These features were added by [Jafar Farghanlooj](https://github.com/jf952) and [Farooq Karimi Zadeh](https://github.com/farooqkz).
 
+For Persian text, an open source font created by late Rastikerdar, named Vazirmatn, has been used. The fonts come bundled with the theme.
+
 ## Acknowledgements
 
 - [Hugo](https://gohugo.io/): Static site generator
