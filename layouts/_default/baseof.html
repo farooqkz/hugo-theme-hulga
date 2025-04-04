@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
 
     elements.forEach((el) => {
-      if (persianRegex.test(el.textContent)) {
+      const numberOfPersianLetters = Array.from(el.textContent.matchAll(persianRegex)).length;
+      if (numberOfPersianLetters > (el.textContent.length / 2)) {
         el.style.direction = "rtl";
         el.style.textAlign = "right";
       } else {
@@ -21,10 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // اجرای اولیه هنگام بارگذاری صفحه
+  // apply initially during loading
   applyTextDirection();
 
-  // اگر محتوای #post-content دینامیکی تغییر کند، تغییرات را بررسی کن
+  // dynamically watch and apply to #post-content
   const observer = new MutationObserver(() => {
     applyTextDirection();
   });
