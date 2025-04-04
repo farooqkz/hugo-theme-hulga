@@ -16,6 +16,36 @@
   {{ if .Site.Params.keywords }}
   <meta name="keywords" content="{{.Site.Params.keywords}}">
   {{ end }}
+  {{ if eq .Site.Params.Lang "fa-ir"}}
+    <style>
+      @font-face {
+        font-family: 'Vazirmatn';
+        font-display: auto;
+        font-style:  normal;
+        font-weight: 400;
+        src: local('Vazirmatn'), url('css/webfonts/Vazir.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Vazirmatn';
+        font-display: auto;
+        font-style:  normal;
+        font-weight: 500;
+        src: local('Vazirmatn'), url('css/webfonts/Vazir-Medium.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Vazirmatn';
+        font-display: auto;
+        font-style:  normal;
+        font-weight: 600;
+        src: local('Vazirmatn'), url('css/webfonts/Vazir-Bold.woff2') format('woff2');
+      }
+      body {
+        font: "Vazirmatn";
+      }
+    </style>
+  {{end}}
   {{ if .Site.Params.description }}
   <meta name="description" content="{{ .Site.Params.description }}">
   {{ end }}
