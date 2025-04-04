@@ -1,5 +1,5 @@
 <section class="hero is-primary shadow-hero {{ if .Site.Params.heroBold }}is-bold{{ end }}">
-  <div class="hero-head">
+  <div class="hero-head" {{if eq .Lang "fa"}}dir="rtl"{{end}}>
     {{ partial "nav.html" . }}
   </div>
   <div class="hero-body">

@@ -13,6 +13,48 @@
   <title>{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}</title>
   <meta property="og:title" content="{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}">
   <meta property="og:type" content="website">
+  <script>
+  // this code here is for bidirectional text support.
+  // It right aligns and changes direction to RTL when the majority 
+  // characters of an element are Persian letters.
+  document.addEventListener("DOMContentLoaded", function () {
+    function applyTextDirection() {
+      const elements = document.querySelectorAll(
+        "#post-content p, #post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5, #post-content h6, #post-content li, #post-content blockquote, #post-content dd, #post-content dt, #post-content td, #post-content th"
+      );
+
+      const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g;
+
+      elements.forEach((el) => {
+        const numberOfPersianLetters = Array.from(el.textContent.matchAll(persianRegex)).length;
+        if (numberOfPersianLetters > (el.textContent.length / 2)) {
+          console.log("Converting ", el, " to RTL");
+          el.style.direction = "rtl";
+          el.style.textAlign = "right";
+        } else {
+          console.log("Not converting ", el, " to RTL");
+          el.style.direction = "ltr";
+          el.style.textAlign = "left";
+        }
+      });
+    }
+
+    // apply initially during loading
+    applyTextDirection();
+
+    // dynamically watch and apply to #post-content
+    const observer = new MutationObserver(() => {
+      applyTextDirection();
+    });
+
+    const postContent = document.querySelector("#post-content");
+    if (postContent) {
+      observer.observe(postContent, { childList: true, subtree: true });
+    }
+  });
+
+  </script>
+
   {{ if .Site.Params.keywords }}
   <meta name="keywords" content="{{.Site.Params.keywords}}">
   {{ end }}

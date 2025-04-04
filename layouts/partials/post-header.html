@@ -37,7 +37,9 @@
   </div>
 </section>
 
-<script src="js/jalaali.min.js"></script>
+
+{{ if eq .Lang "fa"}}
+<script src="/js/jalaali.min.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -47,6 +49,8 @@
       let [gy, gm, gd] = dateStr.split("-").map(Number);   // convert to numbers
       let { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd);  // convert to jalali
       timeElement.innerText = `${jd.toLocaleString().padStart(2, '۰')} / ${jm.toLocaleString().padStart(2, '۰')} / ${jy}`;
+      timeElement.dir = "rtl";
     }
   });
 </script>
+{{end}}
