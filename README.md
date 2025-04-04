@@ -176,6 +176,12 @@ tag = "tags"
 
 ```
 
+## Persian/Farsi support with Jalaali calendar
+
+To create a Persian website, set `defaultContentLanguage` and `languageCode` to `fa-ir`. Then enable RTL for the website by setting `params.languageDir` to `rtl`. Having the website language as Persian automatically enables a short Javascript which converts Gregorian dates to Jalali ones in the user's browser. Unfortunately, Jalali calendar so converting and displaying dates in the user's browser using Javascript has been used as a workaround.
+
+These features were added by [Jafar Farghanlooj](https://github.com/jf952) and [Farooq Karimi Zadeh](https://github.com/farooqkz).
+
 ## Acknowledgements
 
 - [Hugo](https://gohugo.io/): Static site generator
