@@ -13,6 +13,9 @@
   <title>{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}</title>
   <meta property="og:title" content="{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}">
   <meta property="og:type" content="website">
+  {{ if .Site.Params.GoatCounter }}
+  <script data-goatcounter="{{ .Site.Params.GoatCounter.Data }}" async src="{{ .Site.Params.GoatCounter.src }}"></script>
+  {{end}}
   <script>
   // this code here is for bidirectional text support.
   // It right aligns and changes direction to RTL when the majority 
