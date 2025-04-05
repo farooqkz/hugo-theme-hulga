@@ -37,30 +37,30 @@ You can also customize primary and secondary color, for example:
 
 1. Clone to hugo site themes folder
 
-    ```bash
-    git submodule add https://github.com/wlh320/hugo-theme-hulga.git themes/hulga
-    ```
+   ```bash
+   git submodule add https://github.com/wlh320/hugo-theme-hulga.git themes/hulga
+   ```
 
 2. Enable it in `config.toml`
 
-    ```
-    theme = "hulga"
-    ```
-    and then config it.
+   ```
+   theme = "hulga"
+   ```
 
-3. To use `postcss`, you should have hugo extended version installed, 
-then copy `package.json` and `postcss.config.js` to the root of your site folder, then `npm install`.
+   and then config it.
+
+3. To use `postcss`, you should have hugo extended version installed,
+   then copy `package.json` and `postcss.config.js` to the root of your site folder, then `npm install`.
 
 4. If your language is not `en` or `zh-cn`, you may need to add i18n files in i18n folder
-to show some i18n strings in this theme.
+   to show some i18n strings in this theme.
 
-5. Ensure the to put all content in a directory titled "post" for 
-the theme to populate the articles. Ex. content\post
+5. Ensure the to put all content in a directory titled "post" for
+   the theme to populate the articles. Ex. content\post
 
-6. To enable search page, install pagefind and run `npx pagefind --site public` after 
-`hugo build`. Check [pagefind's docs](https://pagefind.app/docs/#indexing-your-site)
-for detail.
-    
+6. To enable search page, install pagefind and run `npx pagefind --site public` after
+   `hugo build`. Check [pagefind's docs](https://pagefind.app/docs/#indexing-your-site)
+   for detail.
 
 ## Config
 
@@ -138,7 +138,7 @@ theme = "hulga"
 # [build]
 #   writeStats = true
 
-# to enable different hightlight themes in light/dark mode 
+# to enable different hightlight themes in light/dark mode
 [markup]
   [markup.highlight]
     noClasses = false
@@ -184,6 +184,24 @@ These features were added by [Jafar Farghanlooj](https://github.com/jf952) and [
 
 For Persian text, an open source font created by late Rastikerdar, named Vazirmatn, has been used. The fonts come bundled with the theme.
 
+## Analytics(GoatCounter and Google Analytics)
+
+### Google Analytics
+
+To enable Google Analytics, set `params.GoogleAnalytics` to `true`.
+Then follow [hugo's guide](https://gohugo.io/templates/embedded/#configuration-google-analytics)
+to configure it.
+
+### GoatCounter
+
+To enable GoatCounter, add these to `params`:
+
+```toml
+[GoatCounter]
+data = "https://yourcode.goatcounter.com/count"
+src = "//gc.zgo.at/count.js"
+```
+
 ## Acknowledgements
 
 - [Hugo](https://gohugo.io/): Static site generator
@@ -193,4 +211,3 @@ For Persian text, an open source font created by late Rastikerdar, named Vazirma
 - [anchorjs](https://github.com/bryanbraun/anchorjs): Add anchor to title
 - [tocbot](https://tscanlin.github.io/tocbot/): Generate table of contents
 - [vanilla-back-to-top](https://github.com/vfeskov/vanilla-back-to-top): Add back-to-top button
-
