@@ -17,4 +17,6 @@
 {{ if .Site.Params.pwa }}
 {{ partial "pwa.html" . }}
 {{ end }}
+{{ if .Site.Params.GoogleAnalytics }}
 {{ template "_internal/google_analytics.html" . }}
+{{end}}
