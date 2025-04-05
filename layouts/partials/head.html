@@ -1,18 +1,4 @@
 <head>
-  {{- if .Site.Params.darkToggle -}}
-  <script>const t=localStorage.getItem('bulma-theme'); if (t !== null) { document.documentElement.setAttribute('data-theme', t);} </script>
-  {{- end -}}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  {{- if .Site.Params.primaryColor -}}
-  <meta name="msapplication-TileColor" content="{{.Site.Params.primaryColor}}">
-  <meta name="theme-color" content="{{.Site.Params.primaryColor}}">
-  {{- end -}}
-  {{- if .IsHome -}}
-  <title>{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}</title>
-  <meta property="og:title" content="{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}">
-  <meta property="og:type" content="website">
   {{ if .Site.Params.GoatCounter }}
   <script data-goatcounter="{{ .Site.Params.GoatCounter.Data }}" async src="{{ .Site.Params.GoatCounter.src }}"></script>
   {{end}}
@@ -23,7 +9,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     function applyTextDirection() {
       const elements = document.querySelectorAll(
-        "#post-content p, #post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5, #post-content h6, #post-content li, #post-content blockquote, #post-content dd, #post-content dt, #post-content td, #post-content th"
+        "pre, #post-content p, #post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5, #post-content h6, #post-content li, #post-content blockquote, #post-content dd, #post-content dt, #post-content td, #post-content th"
       );
 
       const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g;
@@ -57,8 +43,21 @@
   });
 
   </script>
-
-  {{ if .Site.Params.keywords }}
+  {{- if .Site.Params.darkToggle -}}
+  <script>const t=localStorage.getItem('bulma-theme'); if (t !== null) { document.documentElement.setAttribute('data-theme', t);} </script>
+  {{- end -}}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {{- if .Site.Params.primaryColor -}}
+  <meta name="msapplication-TileColor" content="{{.Site.Params.primaryColor}}">
+  <meta name="theme-color" content="{{.Site.Params.primaryColor}}">
+  {{- end -}}
+  {{- if .IsHome -}}
+  <title>{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}</title>
+  <meta property="og:title" content="{{ .Site.Title }} {{- if .Site.Params.subtitle }} | {{ .Site.Params.subtitle }} {{- end -}}">
+  <meta property="og:type" content="website">
+    {{ if .Site.Params.keywords }}
   <meta name="keywords" content="{{.Site.Params.keywords}}">
   {{ end }}
   {{ if eq .Site.Params.Lang "fa-ir"}}
