@@ -12,18 +12,28 @@
         "pre, #post-content p, #post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5, #post-content h6, #post-content li, #post-content blockquote, #post-content dd, #post-content dt, #post-content td, #post-content th"
       );
 
-      const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g;
+      const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g;
+      // ^ unicode blocks of Arabic characters(RTL)
+      const latinAndChinseRegex = /[\u0000-\u024F\u4e00-\u9fff]/g;
+      // ^ unicode blocks of latin and chinese characters(LTR)
 
       elements.forEach((el) => {
-        const numberOfPersianLetters = Array.from(el.textContent.matchAll(persianRegex)).length;
-        if (numberOfPersianLetters > (el.textContent.length / 2)) {
-          console.log("Converting ", el, " to RTL");
+        const numberOfRTLLetters = Array.from(el.textContent.matchAll(persianRegex)).length;
+        const numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChinseRegex)).length;
+        if (numberOfRTLLetters > numberOfLTRLetters) {
           el.style.direction = "rtl";
           el.style.textAlign = "right";
-        } else {
-          console.log("Not converting ", el, " to RTL");
+        } else if (numberOfLTRLetters > numberOfRTLLetters){
           el.style.direction = "ltr";
           el.style.textAlign = "left";
+        } else {
+          if (document.dir === "ltr") {
+            el.style.direction = "ltr";
+            el.style.textAlign = "left";
+          } else {
+            el.style.direction = "rtl";
+            el.style.textAlign = "right";
+          }
         }
       });
     }
