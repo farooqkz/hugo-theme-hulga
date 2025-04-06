@@ -28,7 +28,9 @@
                   {{ end }}
                   <div class="post-box-meta">
                     <div class="post-box-time">
-                      {{ .Date.Format "2006/01/02" }}
+                      <span id="date" data-date='{{ .Date.Format "2006-01-02" }}'>
+                        {{ .Date.Format "2006/01/02" }}
+                      </span>
                       {{ with (.GetTerms "categories") }} ・
                         {{- range .}}
                         <span class="post-cat mr-2">
