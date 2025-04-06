@@ -18,7 +18,7 @@
       // ^ unicode blocks of latin and chinese characters(LTR)
 
       elements.forEach((el) => {
-        const numberOfRTLLetters = Array.from(el.textContent.matchAll(persianRegex)).length;
+        const numberOfRTLLetters = Array.from(el.textContent.matchAll(arabicRegex)).length;
         const numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChinseRegex)).length;
         if (numberOfRTLLetters > numberOfLTRLetters) {
           el.style.direction = "rtl";
