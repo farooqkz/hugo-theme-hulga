@@ -145,14 +145,14 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        let timeElement = document.getElementById("date");
-        if (timeElement) {
+        let timeElements = document.querySelectorAll(".post-box-time > #date");
+        timeElements.forEach(|timeElement| {
           let dateStr = timeElement.getAttribute("data-date");  // extract gregorian date
           let [gy, gm, gd] = dateStr.split("-").map(Number);   // convert to numbers
           let { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd);  // convert to jalali
           timeElement.innerText = `${jd.toLocaleString("fa-ir").padStart(2, '۰')} / ${jm.toLocaleString("fa-ir").padStart(2, '۰')} / ${jy.toLocaleString("fa-ir")}`;
           timeElement.dir = "rtl";
-        }
+        });
       });
     </script>
   {{end}}
