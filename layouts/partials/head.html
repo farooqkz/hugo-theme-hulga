@@ -146,7 +146,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         let timeElements = document.querySelectorAll(".post-box-time > #date");
-        timeElements.forEach(|timeElement| {
+        timeElements.forEach(timeElement => {
           let dateStr = timeElement.getAttribute("data-date");  // extract gregorian date
           let [gy, gm, gd] = dateStr.split("-").map(Number);   // convert to numbers
           let { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd);  // convert to jalali
