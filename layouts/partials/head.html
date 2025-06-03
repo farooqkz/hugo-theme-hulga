@@ -14,12 +14,18 @@
 
       const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g;
       // ^ unicode blocks of Arabic characters(RTL)
-      const latinAndChinseRegex = /[\u0000-\u024F\u4e00-\u9fff]/g;
+      const latinAndChineseRegex = /[\u0000-\u024F\u4e00-\u9fff]/g;
       // ^ unicode blocks of latin and chinese characters(LTR)
 
       elements.forEach((el) => {
         const numberOfRTLLetters = Array.from(el.textContent.matchAll(arabicRegex)).length;
         const numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChinseRegex)).length;
+        if (el.textContent[0].match(arabicRegex) !== null) {
+          numberOfRTLLetters *= 1.1;
+        }
+        if (el.textContent[0].match(latinAndChineseRegex) !== null) {
+          numberOfLTRLetters *= 1.1;
+        }
         if (numberOfRTLLetters > numberOfLTRLetters) {
           el.style.direction = "rtl";
           el.style.textAlign = "right";
