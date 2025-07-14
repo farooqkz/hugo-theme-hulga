@@ -23,7 +23,13 @@
         if (el.textContent[0].match(arabicRegex) !== null) {
           numberOfRTLLetters *= 1.1;
         }
+        if (el.textContent[1].match(arabicRegex) !== null) {
+          numberOfRTLLetters *= 1.1;
+        }
         if (el.textContent[0].match(latinAndChineseRegex) !== null) {
+          numberOfLTRLetters *= 1.1;
+        }
+        if (el.textContent[1].match(latinAndChineseRegex) !== null) {
           numberOfLTRLetters *= 1.1;
         }
         if (numberOfRTLLetters > numberOfLTRLetters) {
