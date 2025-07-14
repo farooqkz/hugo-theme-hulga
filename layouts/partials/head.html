@@ -18,8 +18,8 @@
       // ^ unicode blocks of latin and chinese characters(LTR)
 
       elements.forEach((el) => {
-        const numberOfRTLLetters = Array.from(el.textContent.matchAll(arabicRegex)).length;
-        const numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChinseRegex)).length;
+        let numberOfRTLLetters = Array.from(el.textContent.matchAll(arabicRegex)).length;
+        let numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChineseRegex)).length;
         if (el.textContent[0].match(arabicRegex) !== null) {
           numberOfRTLLetters *= 1.1;
         }
