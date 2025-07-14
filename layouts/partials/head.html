@@ -151,7 +151,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        let timeElements = document.querySelectorAll(".post-box-time > #date");
+        let timeElements = document.querySelectorAll("#date");
         timeElements.forEach(timeElement => {
           let dateStr = timeElement.getAttribute("data-date");  // extract gregorian date
           let [gy, gm, gd] = dateStr.split("-").map(Number);   // convert to numbers
