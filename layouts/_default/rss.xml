@@ -1,4 +1,4 @@
-{{ /*
+<!--
   Copyright Benedikt B. aka dataCobra 2020 datacobra@thinkbot.de        
   This file is under GNU General Public License, version 3, or at your option
   any later version. Having a GPL work as part of a non GPL work is okay
@@ -6,7 +6,7 @@
   files in the way they are indistinguishable. And in this case, not this file
   is independent and not mixed with non GPL files, but also the rendered template
   is an independent file on the website. -- Farooq Karimi Zadeh fkz@riseup.net
-*/}}
+-->
 {{- $pctx := . -}}
 {{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
 {{- $pages := slice -}}
