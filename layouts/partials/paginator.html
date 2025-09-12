@@ -22,7 +22,7 @@
       {{- if $showNumber }}
       <li>
         <a class="pagination-link {{ if eq . $pag }}is-current{{ end }}"
-          href="{{ .URL }}">{{ .PageNumber }}</a>
+        href="{{ .URL }}">{{ partial "localize-numbers.html" (dict "page" . value" {{ .PageNumber }})}}</a>
       </li>
       {{- else if $shouldEllipse }}
       <li><span class="pagination-ellipsis">&hellip;</span></li>
