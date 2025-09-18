@@ -2,69 +2,6 @@
   {{ if .Site.Params.GoatCounter }}
   <script data-goatcounter="{{ .Site.Params.GoatCounter.Data }}" async src="{{ .Site.Params.GoatCounter.src }}"></script>
   {{end}}
-  <script>
-  // this code here is for bidirectional text support.
-  // It right aligns and changes direction to RTL when the majority 
-  // characters of an element are Persian letters.
-  document.addEventListener("DOMContentLoaded", function () {
-    function applyTextDirection() {
-      const elements = document.querySelectorAll(
-        "pre, #post-content p, #post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5, #post-content h6, #post-content li, #post-content blockquote, #post-content dd, #post-content dt, #post-content td, #post-content th"
-      );
-
-      const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g;
-      // ^ unicode blocks of Arabic characters(RTL)
-      const latinAndChineseRegex = /[\u0000-\u024F\u4e00-\u9fff]/g;
-      // ^ unicode blocks of latin and chinese characters(LTR)
-
-      elements.forEach((el) => {
-        let numberOfRTLLetters = Array.from(el.textContent.matchAll(arabicRegex)).length;
-        let numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChineseRegex)).length;
-        if (el.textContent[0].match(arabicRegex) !== null) {
-          numberOfRTLLetters *= 1.1;
-        }
-        if (el.textContent[1].match(arabicRegex) !== null) {
-          numberOfRTLLetters *= 1.15;
-        }
-        if (el.textContent[0].match(latinAndChineseRegex) !== null) {
-          numberOfLTRLetters *= 1.1;
-        }
-        if (el.textContent[1].match(latinAndChineseRegex) !== null) {
-          numberOfLTRLetters *= 1.15;
-        }
-        if (numberOfRTLLetters > numberOfLTRLetters) {
-          el.style.direction = "rtl";
-          el.style.textAlign = "right";
-        } else if (numberOfLTRLetters > numberOfRTLLetters){
-          el.style.direction = "ltr";
-          el.style.textAlign = "left";
-        } else {
-          if (document.dir === "ltr") {
-            el.style.direction = "ltr";
-            el.style.textAlign = "left";
-          } else {
-            el.style.direction = "rtl";
-            el.style.textAlign = "right";
-          }
-        }
-      });
-    }
-
-    // apply initially during loading
-    applyTextDirection();
-
-    // dynamically watch and apply to #post-content
-    const observer = new MutationObserver(() => {
-      applyTextDirection();
-    });
-
-    const postContent = document.querySelector("#post-content");
-    if (postContent) {
-      observer.observe(postContent, { childList: true, subtree: true });
-    }
-  });
-
-  </script>
   {{- if .Site.Params.darkToggle -}}
   <script>const t=localStorage.getItem('bulma-theme'); if (t !== null) { document.documentElement.setAttribute('data-theme', t);} </script>
   {{- end -}}
