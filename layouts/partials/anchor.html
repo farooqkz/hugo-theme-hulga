@@ -1,3 +1,4 @@
+{{- if not .Site.Params.disableAnchorJs }}
 {{- if .Site.Params.noCDN -}}
 <script src={{ "js/anchor.min.js" | absURL }}></script>
 {{- else -}}
@@ -11,3 +12,4 @@
   };
   anchors.add('.content h1, .content h2, .content h3');
 </script>
+{{- end -}}

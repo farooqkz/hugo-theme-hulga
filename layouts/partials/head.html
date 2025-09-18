@@ -18,14 +18,24 @@
       // ^ unicode blocks of latin and chinese characters(LTR)
 
       elements.forEach((el) => {
-        const numberOfRTLLetters = Array.from(el.textContent.matchAll(arabicRegex)).length;
-        const numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChineseRegex)).length;
-        const ltrScore = numberOfLTRLetters * el.textContent[0].match(latinAndChineseRegex) ? 1.2 : 1.0;
-        cosnt rtlScore = numberOfRTLLetters * el.textContent[0].match(arabicRegex) ? 1.2 : 1.0;
-        if (rtlScore > ltrScore) {
+        let numberOfRTLLetters = Array.from(el.textContent.matchAll(arabicRegex)).length;
+        let numberOfLTRLetters = Array.from(el.textContent.matchAll(latinAndChineseRegex)).length;
+        if (el.textContent[0].match(arabicRegex) !== null) {
+          numberOfRTLLetters *= 1.1;
+        }
+        if (el.textContent[1].match(arabicRegex) !== null) {
+          numberOfRTLLetters *= 1.15;
+        }
+        if (el.textContent[0].match(latinAndChineseRegex) !== null) {
+          numberOfLTRLetters *= 1.1;
+        }
+        if (el.textContent[1].match(latinAndChineseRegex) !== null) {
+          numberOfLTRLetters *= 1.15;
+        }
+        if (numberOfRTLLetters > numberOfLTRLetters) {
           el.style.direction = "rtl";
           el.style.textAlign = "right";
-        } else if (ltrScore > rtlScore){
+        } else if (numberOfLTRLetters > numberOfRTLLetters){
           el.style.direction = "ltr";
           el.style.textAlign = "left";
         } else {
@@ -147,7 +157,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        let timeElements = document.querySelectorAll(".post-box-time > #date");
+        let timeElements = document.querySelectorAll("#date");
         timeElements.forEach(timeElement => {
           let dateStr = timeElement.getAttribute("data-date");  // extract gregorian date
           let [gy, gm, gd] = dateStr.split("-").map(Number);   // convert to numbers
